@@ -1,0 +1,7 @@
+Features/functions to implement
+- check letter -> if same position green, elif in word yellow, else gray
+- check if word already been guessed -> don't allow it to be a guessed
+- check to make sure user entered word is a valid word -> dont allow guess if not
+- import library of 5 letter words
+- randomly select a word from the library
+- give user 6 guesses total
