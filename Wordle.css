@@ -2,3 +2,35 @@ html {
     background-color: black;
     color: white
 }
+
+h1 {
+    text-align: center;
+}
+
+.center-all {
+    display: flex;
+    justify-content: center;
+}
+
+.game-grid {
+    width: 450px;
+    height: 530px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.word-row {
+    width: 450px;
+    height: 80px;
+    /* display: flex;
+    justify-content: space-evenly; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.letter {
+    width: 80px;
+    height: 80px;
+    background-color: black;
+    border: 2px solid rgb(79, 79, 79);
+}
