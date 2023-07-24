@@ -25,6 +25,7 @@ initBoard();
 const numGuesses = 6;
 let guessesLeft = 6;
 let currGuess = [];
+let alreadyGuessed = [];
 // row variables
 let currRowNum = 0;
 let rowId = 'row' + currRowNum;
@@ -33,24 +34,67 @@ let currSquare = currRow.firstChild;
 console.log(currRow);
 
 const rightWord = WORDS[Math.floor(Math.random() * WORDS.length)];
+// THIS IS FOR TESTING PURPOSES
+console.log(rightWord);
 
 
 function isLetter(str) {
-    return str.length === 1 && str.match(/[a-zA-Z]/i);
+    return str.length === 1 && (/[a-zA-Z]/).test(str);
+}
+
+function isValidWord(currGuess) {
+    let currWord = currGuess.join('');
+    return currWord.length==5 && !alreadyGuessed.includes(currWord) && WORDS.includes(currWord);
+}
+
+function checkGuess() {
+    let userWins = true;
+    // iterates backwards through square tile elements
+    for (let i=4; i>-1; --i) {
+        if (currGuess[i] === rightWord[i]) {
+            currSquare.classList.add('correct-letter');
+        } else if (rightWord.includes(currGuess[i])) {
+            currSquare.classList.add('wrong-spot');
+            userWins = false;
+        } else {
+            currSquare.classList.add('wrong-letter');
+            userWins = false;
+        }
+        currSquare = currSquare.previousSibling;
+    }
+    console.log('userWins is ' + userWins);
+    // check for win and alert player if so
+    if (userWins) {
+        alert('You Win');
+    } else if (guessesLeft === 1) { // player ran out of guesses
+        alert('You Lose');
+    } else {
+        alreadyGuessed.push(currGuess.join(''));
+        guessesLeft--;
+        currGuess = [];
+        
+        // This method of initializing and updating dom elem is kinda inefficient
+        // FIND BETTER SOLUTION LATER
+        currRowNum++;
+        rowId = 'row' + currRowNum;
+        currRow = currRow.nextSibling;
+        currSquare = currRow.firstChild;
+        console.log('rowId is ' + rowId);
+        console.log(currRow);
+        console.log(currSquare);
+    }
 }
 
 function handleKeyDown(e) {
     let char = e.key;
     // this is for debugging purposes
     console.log(e.key);
-    // FIXME: CREATE FUNCTIONS FOR HANDLING ENTER
-    // if (char === 'Enter' && currentGuess.length===5 && isValidWord(currentGuess) {
-    //     checkGuess();
-    // }
 
-    if (char === 'Backspace') {
+    if (char=='Enter' && currGuess.length===5 && isValidWord(currGuess)) {
+        checkGuess();
+    } else if (char === 'Backspace') {
         // currSquare is current EMPTY SQUARE
-        // only exception to this is there 5 letters, every space is occupied
+        // only exception to this is when there's 5 letters, every space is occupied
         if (currGuess.length < 5 && currGuess.length > 0) {
             currSquare = currSquare.previousSibling;
         }
@@ -60,14 +104,12 @@ function handleKeyDown(e) {
         }
         console.log(currGuess);
         return;
-    } else if (isLetter(char) === null) {
+    } else if (isLetter(char) == false) {  // not a letter/Enter/Backspace
         return;
-    } else if (currGuess.length > 4) {
+    } else if (currGuess.length > 4) {  // not 5 letters
         return;
-    } else {
+    } else {  // handle letter
         currGuess.push(char);
-        // FOR DEBUGGING
-        console.log(currGuess);
         currSquare.innerText = char;
         if (currGuess.length < 5) {
             currSquare = currSquare.nextSibling;
