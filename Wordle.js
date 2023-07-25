@@ -85,10 +85,9 @@ function checkGuess() {
     }
 }
 
-function handleKeyDown(e) {
-    let char = e.key;
+function handleKeyDown(char) {
     // this is for debugging purposes
-    console.log(e.key);
+    console.log(char);
 
     if (char=='Enter' && currGuess.length===5 && isValidWord(currGuess)) {
         checkGuess();
@@ -117,6 +116,33 @@ function handleKeyDown(e) {
     }
 }
 
+function createKeyboardListeners() {
+    let keyRow = document.querySelector('.key-row');
+    let letterKey = null;
+    while (keyRow) {
+        letterKey = keyRow.firstElementChild;
+        while (letterKey != null) {
+            console.log(letterKey);
+            letterKey.addEventListener('mousedown', (e) => {
+                handleKeyDown(e.target.id);
+            })
+            letterKey = letterKey.nextElementSibling;
+        }
+        keyRow = keyRow.nextElementSibling;
+    }
+    /*
+    This fixes clicking on the backspace img(not button) not working
+    NOTE: not the most efficent, as the backspace img now has 2 event listeners
+    one that works and one that does nothing
+    */
+    let backSpaceKeyImg = document.querySelector('#Backspace img');
+    backSpaceKeyImg.addEventListener('mousedown', () => {
+        handleKeyDown('Backspace');
+    })
+}
 
+createKeyboardListeners();
 
-document.addEventListener('keydown', handleKeyDown);
+document.addEventListener('keydown', (e) => {
+    handleKeyDown(e.key);
+});

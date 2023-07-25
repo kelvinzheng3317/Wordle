@@ -84,11 +84,11 @@ h1 {
     font-weight: bold;
 }
 
-#enter, #backspace {
+#Enter, #Backspace {
     width: 75px;
 }
 
-#backspace-img {
+#Backspace img {
     height: 30px;
     width: 30px;
 }
