@@ -79,9 +79,6 @@ function checkGuess() {
         rowId = 'row' + currRowNum;
         currRow = currRow.nextSibling;
         currSquare = currRow.firstChild;
-        console.log('rowId is ' + rowId);
-        console.log(currRow);
-        console.log(currSquare);
     }
 }
 
@@ -109,7 +106,8 @@ function handleKeyDown(char) {
         return;
     } else {  // handle letter
         currGuess.push(char);
-        currSquare.innerText = char;
+        // note that the word guess arrays are all lower case, only uppercase on screen
+        currSquare.innerText = char.toUpperCase();
         if (currGuess.length < 5) {
             currSquare = currSquare.nextSibling;
         }
