@@ -1,5 +1,5 @@
 html {
-    background-color: black;
+    background-color: rgb(15, 15, 15);
     color: white;
     font-family: 'Libre Franklin', sans-serif;
 }
@@ -12,6 +12,14 @@ h1 {
 .center-all {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .game-grid {
@@ -32,8 +40,7 @@ h1 {
 
 .letter {
     width: 70px;
-    height: 70px;
-    background-color: black;
+    height: 70px;rgb(15, 15, 15);black;
     border: 2px solid rgb(79, 79, 79);
     display: flex;
     justify-content: center;
@@ -52,4 +59,36 @@ h1 {
 
 .correct-letter {
     background-color: green;
+}
+
+/* .keyboard {
+
+} */
+
+.key-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.letter-key {
+    width: 50px;
+    height: 60px;
+    background-color: gray;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 6px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#enter, #backspace {
+    width: 75px;
+}
+
+#backspace-img {
+    height: 30px;
+    width: 30px;
 }
