@@ -31,7 +31,6 @@ let currRowNum = 0;
 let rowId = 'row' + currRowNum;
 let currRow = document.getElementById(rowId);
 let currSquare = currRow.firstChild;
-console.log(currRow);
 
 const rightWord = WORDS[Math.floor(Math.random() * WORDS.length)];
 // THIS IS FOR TESTING PURPOSES

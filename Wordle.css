@@ -63,7 +63,7 @@ h1 {
 
 .letter {
     width: 70px;
-    height: 70px;rgb(15, 15, 15);black;
+    height: 70px;
     border: 2px solid rgb(79, 79, 79);
     display: flex;
     justify-content: center;
