@@ -7,6 +7,29 @@ html {
 h1 {
     text-align: center;
     font-size: 2.25em;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgb(83, 83, 83);
+    margin-bottom: 12px;
+}
+
+.win-notif, .lose-notif {
+    position: absolute;
+    top: 75px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: white;
+    color: black;
+    height: 40px;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight:bold;
+    opacity: 0%;
+    transition: opacity 2s;
 }
 
 .center-all {

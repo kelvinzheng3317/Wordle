@@ -79,9 +79,11 @@ function checkGuess() {
 
     // check for win and alert player if so
     if (userWins) {
-        alert('You Win');
+        document.querySelector('.win-notif').style.opacity = '100%';
+        setTimeout(() => {document.querySelector('.win-notif').style.opacity = '0%';}, 5000);
     } else if (guessesLeft === 1) { // player ran out of guesses
-        alert('You Lose');
+        document.querySelector('.lose-notif').style.opacity = '100%';
+        setTimeout(() => {document.querySelector('.lose-notif').style.opacity = '0%';}, 5000);
     } else {
         alreadyGuessed.push(currGuess.join(''));
         guessesLeft--;
@@ -97,9 +99,6 @@ function checkGuess() {
 }
 
 function handleKeyDown(char) {
-    // this is for debugging purposes
-    console.log(char);
-
     if (char=='Enter' && currGuess.length===5 && isValidWord(currGuess)) {
         checkGuess();
     } else if (char === 'Backspace') {
