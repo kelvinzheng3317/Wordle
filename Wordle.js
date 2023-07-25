@@ -35,7 +35,7 @@ console.log(currRow);
 
 const rightWord = WORDS[Math.floor(Math.random() * WORDS.length)];
 // THIS IS FOR TESTING PURPOSES
-console.log(rightWord);
+// console.log(rightWord);
 
 
 function isLetter(str) {
@@ -111,7 +111,6 @@ function handleKeyDown(char) {
             currGuess.pop();
             currSquare.innerText = "";
         }
-        console.log(currGuess);
         return;
     } else if (isLetter(char) == false) {  // not a letter/Enter/Backspace
         return;
