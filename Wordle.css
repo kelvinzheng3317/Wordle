@@ -57,13 +57,9 @@ h1 {
     background-color: rgb(204, 196, 86);
 }
 
-.correct-letter {
-    background-color: green;
+.correct {
+    background-color: rgb(48, 154, 48);
 }
-
-/* .keyboard {
-
-} */
 
 .key-row {
     display: flex;

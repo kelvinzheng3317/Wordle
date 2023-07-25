@@ -47,22 +47,36 @@ function isValidWord(currGuess) {
     return currWord.length==5 && !alreadyGuessed.includes(currWord) && WORDS.includes(currWord);
 }
 
+function updateKeyboard(letter, correctStatus) {
+    let key = document.getElementById(letter);
+    if (correctStatus == 'wrong-letter') {
+        key.style.backgroundColor = 'rgb(53, 53, 53)';
+    } else if (correctStatus == 'wrong-spot' && key.style.backgroundColor!='rgb(48, 154, 48)') {
+        key.style.backgroundColor = 'rgb(204, 196, 86)';
+    } else if (correctStatus == 'correct') { // correct letter case
+        key.style.backgroundColor = 'rgb(48, 154, 48)';
+    }
+}
+
 function checkGuess() {
     let userWins = true;
     // iterates backwards through square tile elements
     for (let i=4; i>-1; --i) {
         if (currGuess[i] === rightWord[i]) {
-            currSquare.classList.add('correct-letter');
+            currSquare.classList.add('correct');
+            updateKeyboard(currGuess[i], 'correct');
         } else if (rightWord.includes(currGuess[i])) {
             currSquare.classList.add('wrong-spot');
+            updateKeyboard(currGuess[i], 'wrong-spot');
             userWins = false;
         } else {
             currSquare.classList.add('wrong-letter');
+            updateKeyboard(currGuess[i], 'wrong-letter');
             userWins = false;
         }
         currSquare = currSquare.previousSibling;
     }
-    console.log('userWins is ' + userWins);
+
     // check for win and alert player if so
     if (userWins) {
         alert('You Win');
@@ -120,7 +134,6 @@ function createKeyboardListeners() {
     while (keyRow) {
         letterKey = keyRow.firstElementChild;
         while (letterKey != null) {
-            console.log(letterKey);
             letterKey.addEventListener('mousedown', (e) => {
                 handleKeyDown(e.target.id);
             })
