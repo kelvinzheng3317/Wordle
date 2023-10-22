@@ -1,0 +1,1 @@
+A personal self projected where I recreated the popular webgame Wordle. The game has animations and a useable on screen keyboard that updates according. This project was built using Javascript, HTML, CSS.
